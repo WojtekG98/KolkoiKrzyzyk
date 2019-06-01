@@ -19,5 +19,9 @@ public:
 	bool remis();
 	void WyswietlPlansze();
 	int SprawdzenieWygranej();
+	int Maximum(int a, int b);
+	int Minimum(int a, int b);
+	int MinMax(int **plansza,int AktualnaGlebokosc, bool CzyRuchGracza, int alpha, int beta);
+	void ZnajdzNajlepszyRuch(int **plansza, int &nrwiersza, int &nrkolumny);
 };
 #endif

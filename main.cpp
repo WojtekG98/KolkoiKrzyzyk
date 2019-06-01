@@ -16,17 +16,17 @@ int main()
 		gra.WyswietlPlansze();
 		if (gra.SprawdzenieWygranej() == -10)
 		{
-			std::cout << "Gracz1 wygral\n";
+			std::cout << "Gracz1 wygral!\n";
 			CzyKoniec = true;
 		}
 		else if (gra.SprawdzenieWygranej() == 10)
 		{
-			std::cout << "Gracz2 wygral\n";
+			std::cout << "Gracz2 wygral!\n";
 			CzyKoniec = true;
 		}
-		if (gra.remis())
+		else if (gra.SprawdzenieWygranej() == 0)
 		{
-			std::cout << "REMIS\n";
+			std::cout << "Remis!\n";
 			CzyKoniec = true;
 		}
 	}

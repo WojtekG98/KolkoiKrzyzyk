@@ -35,12 +35,15 @@ void Gra::Ruch()
 		if (RuchGracza2)
 		{
 			int i = 0, j = 0;
+			/*
 			std::cout << "Ruch Gracza2\n";
 			std::cout << "Podaj nr kolumny:";
 			std::cin >> i;
 			std::cout << "\nPodaj nr wiersza:";
 			std::cin >> j;
-			Plansza[j-1][i-1] = 1;
+			*/
+			ZnajdzNajlepszyRuch(Plansza, i, j);
+			Plansza[i][j] = 1;
 			RuchGracza1 = true;
 			RuchGracza2 = false;
 			IloscRuchow++;
@@ -105,8 +108,8 @@ int Gra::SprawdzenieWygranej()
 	for (int i = 0; i < WielkoscPlanszy; i++)
 		for (int j = 0; j < WielkoscPlanszy; j++)
 		{
-		//dla gracza1
-		//Poziom
+			//dla gracza1
+			//Poziom
 			for (int l = 0; l < IloscWLini; l++)
 			{
 				if (Plansza[i + l][j] == -1)
@@ -119,114 +122,209 @@ int Gra::SprawdzenieWygranej()
 				}
 				else
 					break;
-		}
-		//Pion
-		for (int l = 0; l < IloscWLini; l++)
-		{
-			if (Plansza[i][j + l] == -1)
-			{
-				if (l == IloscWLini - 1)
-				{
-					WygranaGracza1 = true;
-					return -10;
-				}
 			}
-			else
-				break;
-		}
-		//Skos
-		for (int l = 0; l < IloscWLini; l++)
-		{
-			if (Plansza[i + l][j + l] == -1)
+			//Pion
+			for (int l = 0; l < IloscWLini; l++)
 			{
-				if (l == IloscWLini - 1)
+				if (Plansza[i][j + l] == -1)
 				{
-					WygranaGracza1 = true;
-					return -10;
+					if (l == IloscWLini - 1)
+					{
+						WygranaGracza1 = true;
+						return -10;
+					}
 				}
+				else
+					break;
 			}
-			else
-				break;
-		}
+			//Skos
+			for (int l = 0; l < IloscWLini; l++)
+			{
+				if (Plansza[i + l][j + l] == -1)
+				{
+					if (l == IloscWLini - 1)
+					{
+						WygranaGracza1 = true;
+						return -10;
+					}
+				}
+				else
+					break;
+			}
 
 
-		//Skos2
-		for (int l = 0; l < IloscWLini; l++)
-		{
-			if (Plansza[i + l][j - l] == -1)
+			//Skos2
+			for (int l = 0; l < IloscWLini; l++)
 			{
-				if (l == IloscWLini - 1)
+				if (Plansza[i + l][j - l] == -1)
 				{
-					WygranaGracza1 = true;
-					return -10;
+					if (l == IloscWLini - 1)
+					{
+						WygranaGracza1 = true;
+						return -10;
+					}
 				}
+				else
+					break;
 			}
-			else
-				break;
-		}
-		// dla gracza2
-		//Poziom
-		for (int l = 0; l < IloscWLini; l++)
-		{
+			// dla gracza2
+			//Poziom
+			for (int l = 0; l < IloscWLini; l++)
+			{
 
-			if (Plansza[i + l][j] == 1)
-			{
-				if (l == IloscWLini - 1)
+				if (Plansza[i + l][j] == 1)
 				{
-					WygranaGracza2 = true;
-					return 10;
+					if (l == IloscWLini - 1)
+					{
+						WygranaGracza2 = true;
+						return 10;
+					}
 				}
-			}
-			else
-				break;
+				else
+					break;
 
-		}
-		//Pion
-		for (int l = 0; l < IloscWLini; l++)
-		{
-			if (Plansza[i][j + l] == 1)
-			{
-				if (l == IloscWLini - 1)
-				{
-					WygranaGracza2 = true;
-					return 10;
-				}
 			}
-			else
-				break;
-		}
-		//Skos	
-		for (int l = 0; l < IloscWLini; l++)
-		{
-			if (Plansza[i + l][j + l] == 1)
+			//Pion
+			for (int l = 0; l < IloscWLini; l++)
 			{
-				if (l == IloscWLini - 1)
+				if (Plansza[i][j + l] == 1)
 				{
-					WygranaGracza2 = true;
-					return 10;
+					if (l == IloscWLini - 1)
+					{
+						WygranaGracza2 = true;
+						return 10;
+					}
 				}
+				else
+					break;
 			}
-			else
-				break;
-		}
-		//Skos2
-		for (int l = 0; l < IloscWLini; l++)
-		{
-			if (Plansza[i + l][j - l] == 1)
+			//Skos	
+			for (int l = 0; l < IloscWLini; l++)
 			{
-				if (l == IloscWLini - 1)
+				if (Plansza[i + l][j + l] == 1)
 				{
-					WygranaGracza2 = true;
-					return 10;
+					if (l == IloscWLini - 1)
+					{
+						WygranaGracza2 = true;
+						return 10;
+					}
 				}
+				else
+					break;
 			}
-			else
-				break;
+			//Skos2
+			for (int l = 0; l < IloscWLini; l++)
+			{
+				if (Plansza[i + l][j - l] == 1)
+				{
+					if (l == IloscWLini - 1)
+					{
+						WygranaGracza2 = true;
+						return 10;
+					}
+				}
+				else
+					break;
+			}
 		}
+	if (remis())
+		return 0;
+	return -1;
+}
+
+int Gra::Maximum(int a, int b)
+{
+	if (a > b)
+		return a;
+	else
+		return b;
+}
+
+int Gra::Minimum(int a, int b)
+{
+	if (a < b)
+		return a;
+	else
+		return b;
+}
+
+int Gra::MinMax(int **plansza, int AktualnaGlebokosc, bool CzyRuchGracza, int alpha, int beta)
+{
+	//std::cout << "\nMinMax:"<<AktualnaGlebokosc;
+	int WynikGry = SprawdzenieWygranej();
+
+	if (WynikGry == 10) //Wygrywa Bot
+		return WynikGry - AktualnaGlebokosc;
+
+	if (WynikGry == -10) //Wygrywa Gracz
+		return WynikGry + AktualnaGlebokosc;
+
+	if (remis())
+		return 0;
+
+	if (CzyRuchGracza) {
+		int Najlepsze = -1000;
+		for (int i = 0; i < WielkoscPlanszy; i++)
+		{
+			for (int j = 0; j < WielkoscPlanszy; j++)
+			{
+				if (plansza[i][j] == 0)
+				{
+					plansza[i][j] = 1;
+					int Pom = MinMax(plansza, AktualnaGlebokosc + 1, false, alpha, beta);
+					Najlepsze = Maximum(Najlepsze, Pom);
+					alpha = Maximum(Najlepsze, alpha);
+					plansza[i][j] = 0;
+					if (beta <= alpha)
+						break;
+				}
+				if (beta <= alpha)
+					break;
+			}
+		}
+		return Najlepsze;
 	}
+	else
+	{
+		int Najlepsze = 1000;
+		for (int i = 0; i < WielkoscPlanszy; i++) {
+			for (int j = 0; j < WielkoscPlanszy; j++) {
+				if (plansza[i][j] == 0) {
+					plansza[i][j] = -1;
+					int val = MinMax(plansza, AktualnaGlebokosc + 1, true, alpha, beta);
+					Najlepsze = Minimum(Najlepsze, val);
+					beta = Minimum(Najlepsze, beta);
+					plansza[i][j] = 0;
+					if (beta <= alpha)
+						break;
+				}
+				if (beta <= alpha)
+					break;
+			}
+		}
+		return Najlepsze;
+	}
+}
 
-
-
-return 0;
-
+void Gra::ZnajdzNajlepszyRuch(int **plansza, int &nrwiersza, int &nrkolumny)
+{
+	std::cout << "\nZnajdzNajlepszyRuch";
+	int Naj = -1000;
+	int alpha = -1000;
+	int beta = 1000;
+	for (int i = 0; i < WielkoscPlanszy; i++)
+		for (int j = 0; j < WielkoscPlanszy; j++)
+			if (plansza[i][j] == 0)
+			{
+				plansza[i][j] = 1;
+				int Ruch = MinMax(plansza, 0, false, alpha, beta);
+				plansza[i][j] = 0;
+				if (Ruch > Naj)
+				{
+					nrwiersza = i;
+					nrkolumny = j;
+					Naj = Ruch;
+					std::cout << "\nNaj=" << Naj<<" i="<<i<<" j="<<j;
+				}
+			}
 }
