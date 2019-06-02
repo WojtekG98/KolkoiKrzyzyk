@@ -3,7 +3,9 @@
 
 int main()
 {
-	std::cout << "Hello\n";
+	std::cout << "Kolko i Krzyzyk\n";
+	std::cout << "Gracz1 - X\n";
+	std::cout << "Gracz2 - O\n";
 	Gra gra;
 	gra.WyswietlPlansze();
 	bool CzyKoniec = false;
@@ -30,6 +32,7 @@ int main()
 			CzyKoniec = true;
 		}
 	}
+	std::cout << "\nWcisnij ENTER zeby zakonczyc...\n";
 	std::cin.ignore();
 	std::cin.ignore();
 	return 0;
